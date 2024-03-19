@@ -19,7 +19,7 @@ FROM alpine AS prepare
 
 ARG APP_NAME
 
-ADD target/${APP_NAME}.tar.gz /opt
+ADD ${APP_NAME}.tar.gz /opt
 RUN mv /opt/${APP_NAME} /opt/shardingsphere-proxy
 RUN wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar -P /opt/shardingsphere-proxy/lib
 
@@ -32,4 +32,4 @@ COPY --from=prepare /opt/shardingsphere-proxy /opt/shardingsphere-proxy
 EXPOSE 3307
 EXPOSE 3308
 
-ENTRYPOINT ["/opt/shardingsphere-proxy/bin/start.sh -g && tail -f /opt/shardingsphere-proxy/logs/stdout.log"]
+ENTRYPOINT ["/opt/shardingsphere-proxy/bin/start.sh", "-g"]
