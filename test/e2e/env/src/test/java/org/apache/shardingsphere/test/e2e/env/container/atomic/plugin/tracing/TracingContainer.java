@@ -15,24 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.shardingsphere.test.e2e.env.container.atomic.util;
+package org.apache.shardingsphere.test.e2e.env.container.atomic.plugin.tracing;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import org.apache.shardingsphere.test.e2e.env.container.atomic.constants.ProxyContainerConstants;
+import org.apache.shardingsphere.test.e2e.env.container.atomic.DockerITContainer;
 
 /**
- * Adapter container utility class.
+ * Governance container.
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class AdapterContainerUtils {
+public abstract class TracingContainer extends DockerITContainer {
     
-    /**
-     * Get adapter container image.
-     *
-     * @return adapter container image
-     */
-    public static String getAdapterContainerImage() {
-        return System.getProperty("it.docker.proxy.image", ProxyContainerConstants.PROXY_CONTAINER_IMAGE);
+    protected TracingContainer(final String name, final String containerImage) {
+        super(name, containerImage);
     }
 }

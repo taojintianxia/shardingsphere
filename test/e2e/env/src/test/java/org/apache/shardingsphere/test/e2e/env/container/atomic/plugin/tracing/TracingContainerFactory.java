@@ -15,24 +15,32 @@
  * limitations under the License.
  */
 
-package org.apache.shardingsphere.test.e2e.env.container.atomic.util;
+package org.apache.shardingsphere.test.e2e.env.container.atomic.plugin.tracing;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.apache.shardingsphere.test.e2e.env.container.atomic.constants.ProxyContainerConstants;
+import org.apache.shardingsphere.test.e2e.env.container.atomic.plugin.tracing.impl.ZipkinContainer;
 
 /**
- * Adapter container utility class.
+ * Tracing container factory.
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class AdapterContainerUtils {
+public final class TracingContainerFactory {
     
     /**
-     * Get adapter container image.
+     * Create new instance of tracing container.
      *
-     * @return adapter container image
+     * @param type tracing plugin type
+     * @return created instance
+     * @throws RuntimeException runtime exception
      */
-    public static String getAdapterContainerImage() {
-        return System.getProperty("it.docker.proxy.image", ProxyContainerConstants.PROXY_CONTAINER_IMAGE);
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
+    public static TracingContainer newInstance(final String type) {
+        switch (type) {
+            case "Zipkin":
+                return new ZipkinContainer();
+            default:
+                throw new RuntimeException(String.format("Tracing plugin [%s] is unknown.", type));
+        }
     }
 }

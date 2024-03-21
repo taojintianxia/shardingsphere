@@ -15,24 +15,25 @@
  * limitations under the License.
  */
 
-package org.apache.shardingsphere.test.e2e.env.container.atomic.util;
+package org.apache.shardingsphere.test.e2e.env.container.atomic.plugin.tracing.impl;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import org.apache.shardingsphere.test.e2e.env.container.atomic.constants.ProxyContainerConstants;
+import org.apache.shardingsphere.test.e2e.env.container.atomic.plugin.tracing.TracingContainer;
+
+import java.util.Collections;
 
 /**
- * Adapter container utility class.
+ * Zookeeper container.
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class AdapterContainerUtils {
+public final class ZipkinContainer extends TracingContainer {
     
-    /**
-     * Get adapter container image.
-     *
-     * @return adapter container image
-     */
-    public static String getAdapterContainerImage() {
-        return System.getProperty("it.docker.proxy.image", ProxyContainerConstants.PROXY_CONTAINER_IMAGE);
+    public ZipkinContainer() {
+        super("zipkin", "openzipkin/zipkin:latest");
+        setExposedPorts(Collections.singletonList(9411));
+        setPortBindings(Collections.singletonList("19411:9411"));
+    }
+    
+    @Override
+    public String getAbbreviation() {
+        return "zipkin";
     }
 }

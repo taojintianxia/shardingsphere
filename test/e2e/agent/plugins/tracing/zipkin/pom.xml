@@ -38,6 +38,12 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-test-e2e-env</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
             <artifactId>shardingsphere-test-e2e-agent-plugins-common</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
@@ -247,34 +253,34 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>com.dkanejs.maven.plugins</groupId>
-                        <artifactId>docker-compose-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>agent-zipkin-up</id>
-                                <goals>
-                                    <goal>up</goal>
-                                </goals>
-                                <phase>pre-integration-test</phase>
-                                <configuration>
-                                    <composeFile>${docker.jdbc.compose.file}</composeFile>
-                                    <detachedMode>true</detachedMode>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>agent-zipkin-down</id>
-                                <goals>
-                                    <goal>down</goal>
-                                </goals>
-                                <phase>post-integration-test</phase>
-                                <configuration>
-                                    <composeFile>${docker.jdbc.compose.file}</composeFile>
-                                    <removeVolumes>true</removeVolumes>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
+<!--                    <plugin>-->
+<!--                        <groupId>com.dkanejs.maven.plugins</groupId>-->
+<!--                        <artifactId>docker-compose-maven-plugin</artifactId>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>agent-zipkin-up</id>-->
+<!--                                <goals>-->
+<!--                                    <goal>up</goal>-->
+<!--                                </goals>-->
+<!--                                <phase>pre-integration-test</phase>-->
+<!--                                <configuration>-->
+<!--                                    <composeFile>${docker.jdbc.compose.file}</composeFile>-->
+<!--                                    <detachedMode>true</detachedMode>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                            <execution>-->
+<!--                                <id>agent-zipkin-down</id>-->
+<!--                                <goals>-->
+<!--                                    <goal>down</goal>-->
+<!--                                </goals>-->
+<!--                                <phase>post-integration-test</phase>-->
+<!--                                <configuration>-->
+<!--                                    <composeFile>${docker.jdbc.compose.file}</composeFile>-->
+<!--                                    <removeVolumes>true</removeVolumes>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
                 </plugins>
             </build>
         </profile>

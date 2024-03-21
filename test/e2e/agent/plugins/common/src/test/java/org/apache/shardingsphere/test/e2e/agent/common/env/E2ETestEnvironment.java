@@ -20,6 +20,7 @@ package org.apache.shardingsphere.test.e2e.agent.common.env;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.awaitility.Awaitility;
 import org.awaitility.core.ConditionTimeoutException;
@@ -45,6 +46,7 @@ public final class E2ETestEnvironment {
     
     private final boolean isEnvironmentPrepared;
     
+    @Setter
     private DataSource dataSource;
     
     private boolean isInitialized;
@@ -121,12 +123,12 @@ public final class E2ETestEnvironment {
         return true;
     }
     
-    private DataSource createHikariCP(final Properties props) {
+    public DataSource createHikariCP(final Properties props) {
         HikariConfig result = new HikariConfig();
         result.setDriverClassName("com.mysql.cj.jdbc.Driver");
         result.setJdbcUrl(props.getProperty("proxy.url"));
-        result.setUsername(props.getProperty("proxy.username", "root"));
-        result.setPassword(props.getProperty("proxy.password", "root"));
+        result.setUsername(props.getProperty("proxy.username", "proxy"));
+        result.setPassword(props.getProperty("proxy.password", "Proxy@123"));
         result.setMaximumPoolSize(5);
         result.setTransactionIsolation("TRANSACTION_READ_COMMITTED");
         return new HikariDataSource(result);

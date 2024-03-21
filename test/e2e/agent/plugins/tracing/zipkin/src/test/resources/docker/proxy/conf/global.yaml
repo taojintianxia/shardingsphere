@@ -19,6 +19,8 @@ authority:
   users:
     - user: root
       password: root
+    - user: proxy
+      password: Proxy@123
   privilege:
     type: ALL_PERMITTED
 
@@ -27,3 +29,4 @@ props:
   kernel-executor-size: 16  # Infinite by default.
   proxy-frontend-flush-threshold: 128  # The default value is 128.
   sql-show: true
+  proxy-frontend-ssl-enabled: true

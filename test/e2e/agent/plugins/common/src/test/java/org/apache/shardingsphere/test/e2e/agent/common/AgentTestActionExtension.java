@@ -56,7 +56,7 @@ public final class AgentTestActionExtension implements BeforeEachCallback {
         assumeTrue(E2ETestEnvironment.getInstance().isInitialized());
     }
     
-    private void requestProxy() {
+    public void requestProxy() {
         DataSource dataSource = E2ETestEnvironment.getInstance().getDataSource();
         List<Long> results = new ArrayList<>(10);
         for (int i = 1; i <= 10; i++) {
