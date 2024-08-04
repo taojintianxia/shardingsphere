@@ -158,6 +158,7 @@ class DriverDatabaseConnectionManagerTest {
         databaseConnectionManager.getConnections(DefaultDatabase.LOGIC_NAME, "ds", 0, 1, ConnectionMode.MEMORY_STRICTLY);
         List<Connection> actual = databaseConnectionManager.getConnections(DefaultDatabase.LOGIC_NAME, "ds", 0, 3, ConnectionMode.CONNECTION_STRICTLY);
         assertThat(actual.size(), is(3));
+
     }
     
     @Test
